@@ -24,12 +24,18 @@ public:
     int get_height();
     int get_width();
     
+    // CSS controls
     virtual void set_color(QColor color) {}
     
     virtual void set_bg_color(QColor color) {
         this->color = color;
     }
     
+    virtual void set_margin(int ml, int mr, int mt, int mb) {
+        _set_margin(ml, mr, mt, mb);
+    }
+    
+    // Sizing and painting
     virtual void clear_sizes() {
         _clear_sizes();
     }
@@ -48,6 +54,7 @@ public:
         _paint(painter);
     }
 protected:
+    void _set_margin(int ml, int mr, int mt, int mb);
     void _clear_sizes();
     void _size(int sx, int sy, int w_max, int h_max);
     void _paint(QPainter *painter);
@@ -61,6 +68,12 @@ protected:
     int w_pct = 0;
     SizeMode size_mode = SizeMode::Pixel;
     QVector<DomBlock *> children;
+    
+    // Margins
+    int margin_left = 0;
+    int margin_right = 0;
+    int margin_top = 0;
+    int margin_bottom = 0;
 };
 
 class DomText : public DomBlock {
