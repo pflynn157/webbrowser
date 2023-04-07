@@ -46,6 +46,10 @@ void HtmlParser::parse_child(QDomElement parent, DomBlock *parentBlock) {
         block = new DomText(parent.text(), 12);
     } else if (parent.tagName() == "h6") {
         block = new DomText(parent.text(), 10);
+        
+    // paragraph tags
+    } else if (parent.tagName() == "p") {
+        block = new DomText(parent.text(), 14);
     
     // Default to an empty div
     } else {

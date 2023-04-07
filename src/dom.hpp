@@ -82,6 +82,7 @@ public:
         this->x = 0;
         this->y = 0;
         this->text = text;
+        this->raw_text = text;
         this->size_mode = SizeMode::Absolute;
         this->font = QFont("Times", font_size);
         this->color = QColor(Qt::black);
@@ -91,6 +92,29 @@ public:
     
     void set_color(QColor color) {
         this->color = color;
+    }
+    
+    void size(int sx, int sy, int w_max, int h_max) {
+        QFontMetrics metrics(font);
+        QRect bounds = metrics.boundingRect(text);
+        if (bounds.width() < w_max) {
+            return;
+        }
+        
+        QStringList parts = raw_text.split(' ');
+        QString buffer = "";
+        QString newText = "";
+        for (QString p : parts) {
+            QRect bounds2 = metrics.boundingRect(buffer + p);
+            if (bounds2.width() >= w_max) {
+                if (buffer == "") continue;
+                newText += buffer + "\n";
+                buffer = "";
+            }
+            buffer += p + " ";
+        }
+        text = newText + buffer;
+        update_sizing();
     }
     
     void clear_sizes() {}
@@ -104,12 +128,13 @@ protected:
     void update_sizing() {
         QFontMetrics metrics(font);
         QRect bounds = metrics.boundingRect(text);
-        this->w = bounds.width();
-        this->h = bounds.height();
+        QRect bounds2 = metrics.boundingRect(bounds, Qt::TextWordWrap, text);
+        this->w = bounds2.width();
+        this->h = bounds2.height();
     }
 
     QFont font;
-    QString text;
+    QString text, raw_text;
     QColor color;
 };
 
