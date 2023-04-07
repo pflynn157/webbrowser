@@ -6,8 +6,9 @@
 #include "dom.hpp"
 #include "parser.hpp"
 
-Canvas::Canvas() {
+Canvas::Canvas(QWidget *parent) {
     this->setStyleSheet("background-color: white;");
+    this->parent = parent;
     
     HtmlParser *parser = new HtmlParser;
     parser->parse();

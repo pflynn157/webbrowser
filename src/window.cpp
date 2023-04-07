@@ -8,7 +8,8 @@ Window::Window() {
     this->resize(900, 500);
     
     QScrollArea *area = new QScrollArea;
-    Canvas *canvas = new Canvas;
+    area->setStyleSheet("background-color: white;");
+    Canvas *canvas = new Canvas(this);
     area->setWidgetResizable(true);
     area->setWidget(canvas);
     this->setCentralWidget(area);

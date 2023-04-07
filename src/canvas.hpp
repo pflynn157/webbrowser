@@ -9,11 +9,12 @@
 class Canvas : public QWidget {
     Q_OBJECT
 public:
-    Canvas();
+    Canvas(QWidget *parent);
     ~Canvas();
 protected:
     void paintEvent(QPaintEvent *event);
     void resizeEvent(QResizeEvent *event);
     DomTree *tree;
+    QWidget *parent;
 };
 

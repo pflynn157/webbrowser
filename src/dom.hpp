@@ -192,6 +192,8 @@ public:
         
         if (by > h_max) {
             parent->setMinimumSize(parent->width(), by);
+        } else {
+            parent->setMinimumSize(parent->width(), parent->height());
         }
     }
     

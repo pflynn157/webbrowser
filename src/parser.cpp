@@ -49,6 +49,7 @@ void HtmlParser::parse_child(QDomElement parent, DomBlock *parentBlock) {
         
     // paragraph tags
     } else if (parent.tagName() == "p") {
+        std::cout << parent.text().toStdString() << std::endl;
         block = new DomText(parent.text().trimmed(), 14);
     
     // Default to an empty div
