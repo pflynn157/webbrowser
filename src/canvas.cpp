@@ -14,7 +14,7 @@ Canvas::Canvas() {
     tree = parser->get_tree();
     
     tree->apply_parent(this);
-    tree->size(this->width(), this->height());
+    tree->size(this->width(), this->height(), this);
     
     /*
     tree = new DomTree;
@@ -62,6 +62,6 @@ void Canvas::paintEvent(QPaintEvent *event) {
 
 void Canvas::resizeEvent(QResizeEvent *event) {
     QSize newSize = event->size();
-    tree->size(newSize.width(), newSize.height());
+    tree->size(newSize.width(), newSize.height(), this);
 }
 

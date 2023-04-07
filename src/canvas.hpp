@@ -1,12 +1,12 @@
 #pragma once
 
-#include <QFrame>
+#include <QWidget>
 #include <QPaintEvent>
 #include <QResizeEvent>
 
 #include "dom.hpp"
 
-class Canvas : public QFrame {
+class Canvas : public QWidget {
     Q_OBJECT
 public:
     Canvas();

@@ -115,6 +115,8 @@ public:
         }
         text = newText + buffer;
         update_sizing();
+        
+        _size(sx, sy, w_max, h_max);
     }
     
     void clear_sizes() {}
@@ -177,7 +179,7 @@ public:
         }
     }
     
-    void size(int w_max, int h_max) {
+    void size(int w_max, int h_max, QWidget *parent) {
         for (DomBlock *block : children) block->clear_sizes();
     
         // Calculate all sizes
@@ -186,6 +188,10 @@ public:
         for (DomBlock *block : children) {
             block->size(bx, by, w_max, h_max);
             by += block->get_height();
+        }
+        
+        if (by > h_max) {
+            parent->setMinimumSize(parent->width(), by);
         }
     }
     

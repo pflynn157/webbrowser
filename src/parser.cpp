@@ -49,7 +49,7 @@ void HtmlParser::parse_child(QDomElement parent, DomBlock *parentBlock) {
         
     // paragraph tags
     } else if (parent.tagName() == "p") {
-        block = new DomText(parent.text(), 14);
+        block = new DomText(parent.text().trimmed(), 14);
     
     // Default to an empty div
     } else {
