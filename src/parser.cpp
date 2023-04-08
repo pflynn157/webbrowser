@@ -5,10 +5,10 @@
 #include "parser.hpp"
 #include "dom.hpp"
 
-HtmlParser::HtmlParser() {
+HtmlParser::HtmlParser(QString path) {
     tree = new DomTree;
     doc = QDomDocument("first");
-    QFile file("../first.html");
+    QFile file(path);
     if (!file.open(QIODevice::ReadOnly)) {
         std::cout << "Unable to open file." << std::endl;
         return;

@@ -5,7 +5,7 @@
 class Window : public QMainWindow {
     Q_OBJECT
 public:
-    Window();
+    Window(QString path);
     ~Window();
 };
 

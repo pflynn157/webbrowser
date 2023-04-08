@@ -9,7 +9,7 @@
 
 class HtmlParser {
 public:
-    explicit HtmlParser();
+    explicit HtmlParser(QString path);
     void parse();
     void parse_child(QDomElement parent, DomBlock *parentBlock);
     
