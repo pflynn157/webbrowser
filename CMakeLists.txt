@@ -13,7 +13,10 @@ find_package(Qt6 REQUIRED COMPONENTS
     Xml
 )
 
-add_compile_options(-std=c++17)
+add_compile_options(-std=c++17 -g)
 
+include_directories(parser)
+
+add_subdirectory(parser)
 add_subdirectory(src)
 
