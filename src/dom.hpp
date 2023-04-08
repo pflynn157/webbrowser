@@ -82,6 +82,43 @@ public:
         this->x = 0;
         this->y = 0;
         this->text = text;
+        this->size_mode = SizeMode::Absolute;
+        this->font = QFont("Times", font_size);
+        this->color = QColor(Qt::black);
+        
+        update_sizing();
+    }
+    
+    void set_color(QColor color) {
+        this->color = color;
+    }
+    
+    void clear_sizes() {}
+    
+    void paint(QPainter *painter) {
+        painter->setPen(color);
+        painter->setFont(font);
+        painter->drawText(this->x, this->y, this->w, this->h, Qt::AlignLeft, text);
+    }
+protected:
+    void update_sizing() {
+        QFontMetrics metrics(font);
+        QRect bounds = metrics.boundingRect(text);
+        this->w = bounds.width();
+        this->h = bounds.height();
+    }
+
+    QFont font;
+    QString text;
+    QColor color;
+};
+
+class DomParagraph : public DomBlock {
+public:
+    explicit DomParagraph(QString text, int font_size) {
+        this->x = 0;
+        this->y = 0;
+        this->text = text;
         this->raw_text = text;
         this->size_mode = SizeMode::Absolute;
         this->font = QFont("Times", font_size);
