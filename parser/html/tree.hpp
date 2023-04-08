@@ -17,13 +17,24 @@ public:
         children.push_back(child);
     }
     
+    void add_attribute(std::string name, std::string value) {
+        attributes.push_back(std::make_pair(name, value));
+    }
+    
     void set_text(std::string text) {
         this->text = text;
     }
 
     virtual void print(int indent) {
         for (int i = 0; i<indent; i++) std::cout << " ";
-        std::cout << "<" << tag_name << ">";
+        std::cout << "<" << tag_name;
+        if (attributes.size() > 0) {
+            for (auto attr : attributes) {
+                std::cout << " ";
+                std::cout << attr.first << "=\"" << attr.second << "\"";
+            }
+        }
+        std::cout << ">";
         std::cout << text;
         
         if (children.size() > 0) {
@@ -39,6 +50,7 @@ public:
     }
 protected:
     std::vector<HtmlElement *> children;
+    std::vector<std::pair<std::string, std::string>> attributes;
     std::string tag_name;
     std::string text = "";
 };

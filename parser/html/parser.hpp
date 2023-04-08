@@ -12,5 +12,8 @@ public:
 private:
     HtmlTree *tree;
     HtmlScanner *lex;
+    
+    // Functions
+    HtmlElement *parse_tag();
 };
 
