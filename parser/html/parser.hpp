@@ -11,5 +11,6 @@ public:
     HtmlTree *parse();
 private:
     HtmlTree *tree;
+    HtmlScanner *lex;
 };
 
